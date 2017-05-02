@@ -36,3 +36,22 @@ An example to run the model is shown in this file:
 runDeep.py
 ```
 Please see annotation in this file for more details
+
+## Output
+There are four files in the output. 
+1. A file ends with "predict.txt"
+This file contains predicted hazard (probability that a patient is going to die) for each patient (one row represents one patient) at each step.
+
+2. A file ends with "weight.txt"
+This file contains a weight matrix (w1: for the first hidden layer) and a weight vector (w2: for the output layer) at each step.
+
+3. A file ends with "groundTruth.txt"
+This file contains empirical hazard for each patient (the index of 3 and 1 are the same) at each step.
+
+4. The remaining file ends with ".txt"
+This file contains cost, accuracy (c index) and weightSize (for diagnostics) at each step.
+
+## Goal for Atif
+Create a D3.js to visualize the dynatic changes of weight matrix, weight vector, patients' hazard prediction and prediction accuracy at each step of deep learning run, at various conditions.
+
+
