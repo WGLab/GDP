@@ -16,6 +16,7 @@ def lasso(fileName, num_steps, n_hidden, penaltyLambdaArray, alphaArray, prefix,
         
         """
     
+    
     random.seed(100)
     
     phenoFile = "/home/cocodong/project/deeplearningMentor/processData/out.final_gene_list"
@@ -108,8 +109,6 @@ def lasso(fileName, num_steps, n_hidden, penaltyLambdaArray, alphaArray, prefix,
 
     train_set['X'], train_set['T'], train_set['O'], train_set['A'] = sa.calc_at_risk(X, T, O)
 
-
-
     print("finished calculating risks")
 
     ## initialization
@@ -163,14 +162,14 @@ def lasso(fileName, num_steps, n_hidden, penaltyLambdaArray, alphaArray, prefix,
         diff = output - log_at_risk
         times = tf.reshape(diff, [-1]) * observed
             
-        # group lasso penalty
+            # group lasso penalty
         regularization = 0.0
         for eachGroup in range(startGroup):
             groupIndex = [i for i, x in enumerate(group) if x == eachGroup]
-            if (eachGroup in groupWeight) :
-                regularization += tf.sqrt(groupWeight[eachGroup]  * groupWeight[eachGroup] * tf.nn.l2_loss(tf.gather(w_6, tf.to_int64(groupIndex))))
+            regularization += tf.sqrt(groupWeight[eachGroup]  * groupWeight[eachGroup] * tf.nn.l2_loss(tf.gather(w_6, tf.to_int64(groupIndex))))
             
         cost = - (tf.reduce_sum(times)) * 1 / n_obs + alpha * penaltyLambda * regularization + (1 - alpha) * tf.reduce_sum(penaltyLambda * tf.abs(w_6))  + (1 - alpha) * tf.reduce_sum(penaltyLambda * tf.abs(w_1))
+            
 
         weightSize = tf.nn.l2_loss(w_6)
             
@@ -190,12 +189,6 @@ def lasso(fileName, num_steps, n_hidden, penaltyLambdaArray, alphaArray, prefix,
         for penaltyLambdaIndex in range(len(penaltyLambdaArray)):
             print("lambda: " + str(penaltyLambdaArray[penaltyLambdaIndex]))
             
-
-            gtFile = prefix + ".lambda." + str(penaltyLambdaArray[penaltyLambdaIndex]) + ".alpha." + str(alphaArray[alphaArrayIndex]) + ".groundTruth.txt"
-            gtFH = open(gtFile, "w")
-            gtFH.write(str(train_set['A']))
-            
-
             targetFile = prefix + ".lambda." + str(penaltyLambdaArray[penaltyLambdaIndex]) + ".alpha." + str(alphaArray[alphaArrayIndex]) + ".txt"
             targetFH = open(targetFile, "w")
             targetFH.write("iteration" + "\t" + "trainCost"  + "\t"  + "\t" + "trainCIndex" + "\t"  + "weightSize" + "\t" + "\n")
@@ -215,17 +208,11 @@ def lasso(fileName, num_steps, n_hidden, penaltyLambdaArray, alphaArray, prefix,
                     
                     tf.global_variables_initializer().run()
                     
+                    bestAccInOneShuffle =  np.zeros(num_steps)
                     
                     feed_dict = {input : train_set['X'], at_risk : train_set['A'], observed : train_set['O'], keep_prob : 1, penaltyLambda : penaltyLambdaArray[penaltyLambdaIndex], alpha : alphaArray[alphaArrayIndex]}
                         
-                    _, partial_sumV, diffV, log_at_riskV, timesV, expV, outputV, costV, w1V, wV, weightSizeV= session.run([optimizer, partial_sum, diff, log_at_risk, times, exp, output, cost, w_1, w_6, weightSize], feed_dict = feed_dict)
-
-                    print("exp: " + str(expV))
-                    print("partial_sum: " + str(partial_sumV))
-                    print("log_at_risk: " + str(log_at_riskV))
-                    print("diff: " + str(diffV))
-                    print("times: " + str(timesV))
-                    
+                    _, expV, outputV, costV, w1V, wV, weightSizeV= session.run([optimizer, exp, output, cost, w_1, w_6, weightSize], feed_dict = feed_dict)
                         
                     train_c_index = _naive_concordance_index(train_set['T'], -outputV, train_set['O'])
                         
@@ -235,8 +222,9 @@ def lasso(fileName, num_steps, n_hidden, penaltyLambdaArray, alphaArray, prefix,
                     hazardV = 0.535487532 * expV
                         
 
-                    print("step: " + str(step) + ", cost: " + str(costV))
-                    print("train cIndex: " + str(train_c_index))
+                    if (num_steps % 10 == 0) :
+                        print("step: " + str(step) + ", cost: " + str(costV))
+                        print("train cIndex: " + str(train_c_index))
                         
 
                     weightFH.write("step: " + str(step) + "\n")
@@ -248,7 +236,7 @@ def lasso(fileName, num_steps, n_hidden, penaltyLambdaArray, alphaArray, prefix,
             weightFH.close()
             probablityFH.close()
             targetFH.close()
-            gtFH.close()
+
 
 
 
