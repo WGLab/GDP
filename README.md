@@ -2,19 +2,14 @@
 This is a tutorial on how to generate files needed to plot D3.js for Atif.
 
 ## Prerequisite
-1. python3
-Please make sure that you have a local version of python3, or feel free to use mine.
-```
-/home/cocodong/usr/Python-3.5.0/bin/python3
-```
-2. tensorflow. 
+1. tensorflow. 
 This is already installed in Phoenix. Please use following steps to access it. Note that the current version has no GPU.
 ```
 ssh phoenix
 python3
 import tensorflow as tf
 ```
-3. numpy
+2. numpy
 If you are using my Python3, then probably you don't need it. If not, please do
 ```
 pip3 install numpy
