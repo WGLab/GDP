@@ -43,7 +43,7 @@ There are four files in the output.
 This file contains predicted hazard (probability that a patient is going to die) for each patient (one row represents one patient) at each step.
 
 2. A file ends with "weight.txt"
-This file contains a weight matrix (w1: for the first hidden layer) and a weight vector (w2: for the output layer) at each step.
+This file contains a weight matrix (w2: for the first hidden layer) and a weight vector (w1: for the output layer) at each step.
 
 3. A file ends with "groundTruth.txt"
 This file contains empirical hazard for each patient (the index of 3 and 1 are the same) at each step.
