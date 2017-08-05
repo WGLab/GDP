@@ -1,13 +1,13 @@
-from deepGroupLassoPhen import lasso
-fileName = "/home/cocodong/project/deeplearningMentor/processData/all.cgc.1000.txt"  ### use this file to model 
+from deepLassoPhen import lasso
+fileName = "/home/cocodong/project/deeplearningMentor/processData/Brain_allData.txt"  ### use this file to model 
 
-n_hidden = 50 ### number of nodes in each hidden layer, here for simplicity, we only used 1 hidden layer
-num_steps = 50 ### number of steps to run the stochastic neural net
+n_hidden = 100 ### number of nodes in each hidden layer, here for simplicity, we only used 1 hidden layer
+num_steps = 100 ### number of steps to run the stochastic neural net
 
-penaltyLambdaArray = [0.0001] ### step size for gradient descent
-alphaArray = [0.5] ### balancing factor between L1 and L2 penalty
+penaltyLambdaArray = [0] ### penalty for all regularization terms, including group penalty and L1 penalty
+alphaArray = [0.01] ### balancing factor between L2 and L1 penalty, the smaller the alpha, the more sparse the weighting matrix it is
 prefix = "/home/cocodong/project/deeplearningMentor/processData/test" ### prefix for the output
-nonLinear = "sigmoid"  ### activation function for the hidden layer
+nonLinear = "tanh"  ### activation function for the hidden layer
 
 lasso(fileName, num_steps, n_hidden, penaltyLambdaArray, alphaArray, prefix, nonLinear)
 
