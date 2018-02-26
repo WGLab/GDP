@@ -399,16 +399,6 @@ if __name__ == '__main__':
       default="eval_output",
       help='evaluation scores output directory(cost, cindex changes in each epoch after one batch of data feeding)',
   )
-  parser.add_argument(
-      '--input_dir',
-      default="./example",
-      help='Directory for the input file to do model training,validation and testing',
-  )
-  parser.add_argument(
-      '--input_file',
-      default="input.txt",
-      help='input file for survival analysis(survival prediction and draw survival curves)',
-  )
 
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
