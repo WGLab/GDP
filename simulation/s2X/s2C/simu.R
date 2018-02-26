@@ -1,0 +1,5 @@
+source("../SurvSimu.R")
+args = commandArgs(trailingOnly=TRUE)
+i=as.numeric(args[1])
+filename=paste("SimuData_s2C_",i,".csv",sep="")
+getSimulated(filename,group_size=4,group_num=2000,lambda=0.0000008,rho=2.8,effective_group=4,sample_size=500,within_group_cor=0.3)
