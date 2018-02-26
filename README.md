@@ -86,7 +86,7 @@ optional arguments:
 ```
 ## About Input Data
 
-###simple example
+### simple example
 ```
 Here is the first four lines of an example input file:
 1,1,2,2,2,3,3,3,4,4,4 
@@ -95,19 +95,19 @@ f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,days,censors
 2.3,1,2.4,2,2,4.2,3,7.8,4,1.3,0
 ```
 
-###first line: providing group prior knowledge
+### first line: providing group prior knowledge
 ```
 eg: 1,1,2,2,2,3,3,3,4,4,4
 The first line is the group prior knowledge line with group information provided as numbers. In this example, there are 4 groups,
 and the group size of the 1 group is 2, and the group size for other groups (2,3,4) is 3 for each.
 ```
 
-###second line: header information for the name of features and days and censors
+### second line: header information for the name of features and days and censors
 ```
 eg: f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,days,censors
 ```
 
-##other lines: feature matrix + survival days and censoring information
+### other lines: feature matrix + survival days and censoring information
 ```
 eg: 0.1,1,1.5,2,2,3.3,3,3,9.2,2.1,1
 For censors column: if 1 then means the survival date of the patient is censored, otherwise non-censored.
