@@ -1,0 +1,25 @@
+[1] 500 150
+[1] 150
+[1] 500   1
+[1] "time latent:"
+       V1          
+ Min.   :   1.633  
+ 1st Qu.:  68.076  
+ Median : 120.771  
+ Mean   : 184.002  
+ 3rd Qu.: 224.872  
+ Max.   :4476.945  
+[1] "time censored"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.85   52.48  145.46  200.67  293.15 1662.04 
+[1] "censors"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   0.000   0.000   0.484   1.000   1.000 
+[1] "days"
+       V1        
+ Min.   :  0.85  
+ 1st Qu.: 33.34  
+ Median : 69.60  
+ Mean   : 94.98  
+ 3rd Qu.:128.18  
+ Max.   :525.82  
