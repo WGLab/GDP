@@ -207,3 +207,32 @@ def read_data_sets(train_dir="./example",
     validation=DataSet(datasets["eval"]["X"],datasets["eval"]['T'],datasets["eval"]['O'],group,seed)
     test=DataSet(datasets["test"]["X"],datasets["test"]['T'],datasets["test"]["O"],group,seed)
     return Datasets(train=train,validation=validation,test=test)
+
+def read_prediction_data(file_dir="./example",
+                   file_name="test_100.csv",
+                   seed=None):
+    """Read the data for prediction into DataSet tuples
+
+    Args:
+        file_dir: the directory to where the prediction file is located
+	file_name: the file name of the prediction file
+        seed: seed used for numpy random number control
+
+    Results:
+        DataSet
+
+    """
+    fileName=file_dir+"/"+file_name
+    data=np.genfromtxt(fileName,dtype=float,missing_values="None",delimiter=",",skip_header=2)
+    f=open(fileName)
+    group=f.readline().rstrip().split(",")
+    group=[int(x) for x in group]
+
+    #TODO: Add types of censoring: eg. left truncation, right censoring, left censoring , unclear
+
+    sample_size=data.shape[0]
+    T=data[:,-2] # dates
+    O=data[:,-1] #TODO: check censors and death relationship;  dealth = 1 - censors ?
+    X=data[:,:-2] # features
+    pre_data=DataSet(X,T,O,group,seed)
+    return pre_data
