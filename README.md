@@ -21,6 +21,7 @@ $bash qsub_run_example.sh
 
 ## USAGE 
 
+### Training GDP model
 ```
 usage: train_model.py [-h] [--initial_learning_rate INITIAL_LEARNING_RATE]
                       [--alpha ALPHA] [--scale SCALE] [--delta DELTA]
@@ -84,6 +85,44 @@ optional arguments:
                         changes in each epoch after one batch of data feeding)
 
 ```
+### Making survival hazard prediction
+```
+usage: gdp_prediction.py [-h] [--reg_type REG_TYPE] [--activation ACTIVATION]
+                         [--hidden_nodes HIDDEN_NODES]
+                         [--saver_file_dir SAVER_FILE_DIR]
+                         [--saver_file_prefix SAVER_FILE_PREFIX]
+                         [--model MODEL] [--prediction_dir PREDICTION_DIR]
+                         [--prediction_file PREDICTION_FILE]
+                         [--out_dir OUT_DIR] [--out_file OUT_FILE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --reg_type REG_TYPE   types of regularization (available: lasso, l2,
+                        group_lasso, sparse_group_lasso,none)
+  --activation ACTIVATION
+                        activation function (relu, sigmoid or tanh)
+  --hidden_nodes HIDDEN_NODES
+                        Number of nodes in each hidden layer.
+  --saver_file_dir SAVER_FILE_DIR
+                        Directory to put the files with saved variables.
+  --saver_file_prefix SAVER_FILE_PREFIX
+                        prefix of the saver files (saver files used for
+                        reloading the model for prediction)
+  --model MODEL         model used for the training, NN: neural network,
+                        linear: linear regression (alpha should be set to 1
+                        for group lasso)
+  --prediction_dir PREDICTION_DIR
+                        Directory for the input file to do model
+                        training,validation and testing
+  --prediction_file PREDICTION_FILE
+                        input file for making prediction,the sample size in
+                        this file should equal to the batch size in the
+                        training process
+  --out_dir OUT_DIR     output file directory
+  --out_file OUT_FILE   output file name
+
+```
+
 ## About Input Data
 
 ### simple example
@@ -112,3 +151,7 @@ eg: f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,days,censors
 eg: 0.1,1,1.5,2,2,3.3,3,3,9.2,2.1,1
 For censors column: if 1 then means the survival date of the patient is censored, otherwise non-censored.
 ```
+### about the input file for making prediction
+If the survival data and survival censoring status are not availabe for prediction data, then random numbers can be added to make the format consistent with the format used in the training process. And in order to load the model based on the training, the number of patients (samples) in this prediction input file should equal to the batch size used in the training process.
+
+
