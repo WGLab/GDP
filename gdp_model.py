@@ -259,6 +259,19 @@ def loss(inf_output,censors,groups,batch_size,alpha,scale,delta,reg_type="lasso"
 
     return loss
 
+def hazard(inf_output):
+    """ Calculate the survival hazard value
+
+    Args:
+        inf_output: the inference output
+    Returns:
+    	GDP-CPH hazard
+    """
+
+    hazard=tf.squeeze(tf.exp(inf_output)) 
+    return hazard
+
+
 #or l1
 def lasso(scale):
     all_variables=tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES)
