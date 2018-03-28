@@ -1,0 +1,6 @@
+model_checkpoint_path: "gdp.model-1999"
+all_model_checkpoint_paths: "gdp.model-1979"
+all_model_checkpoint_paths: "gdp.model-1984"
+all_model_checkpoint_paths: "gdp.model-1989"
+all_model_checkpoint_paths: "gdp.model-1994"
+all_model_checkpoint_paths: "gdp.model-1999"
