@@ -215,7 +215,7 @@ def run_training():
         init = tf.global_variables_initializer()
 
         # Create a saver for writing training checkpoints.
-        #saver = tf.train.Saver()
+        saver = tf.train.Saver()
 
         # Create a session for running Ops on the Graph.
         sess=tf.Session()
@@ -254,8 +254,9 @@ def run_training():
             # Save a checkpoint and evaluate the model periodically.
             if (step + 1) % 5 == 0 or (step + 1) == FLAGS.max_steps:
                 print('Step: %d , duration: %.3f sec' % (step+1, duration))
-                #checkpoint_file = os.path.join(FLAGS.log_dir, 'model.ckpt')
-                #saver.save(sess, checkpoint_file, global_step=step)
+		#Save the variables to disk
+                checkpoint_file = os.path.join(FLAGS.saver_file_dir,FLAGS.saver_file_prefix)
+                saver.save(sess, checkpoint_file, global_step=step)
                 if FLAGS.skip_eval=='NO':
                     if FLAGS.output_evaluation_cindex!='YES':
                         eval_cindex_output=0
@@ -275,8 +276,8 @@ def run_training():
 
 
 def main(_):
-  if tf.gfile.Exists(FLAGS.log_dir):
-	  pass
+  if not tf.gfile.Exists(FLAGS.saver_file_dir):
+  	tf.gfile.MakeDirs(FLAGS.saver_file_dir)
     #tf.gfile.DeleteRecursively(FLAGS.log_dir)
   #tf.gfile.MakeDirs(FLAGS.log_dir)
   run_training()
@@ -357,16 +358,22 @@ if __name__ == '__main__':
       help='YES or NO for if skipping evaluation'
   )
   parser.add_argument(
+      '--saver_file_dir',
+      type=str,
+      default="./model",
+      help='Directory to put the files with saved variables.'
+  )
+  parser.add_argument(
+      '--saver_file_prefix',
+      type=str,
+      default="gdp.model",
+      help='prefix of the saver files (saver files used for reloading the model for prediction)'
+  )
+  parser.add_argument(
       '--model',
       type=str,
       default="NN",
       help='model used for the training, NN: neural network, linear: linear regression (alpha should be set to 1 for group lasso)'
-  )
-  parser.add_argument(
-      '--log_dir',
-      type=str,
-      default="./log",
-      help='Directory to put the log data.'
   )
   parser.add_argument(
       '--train_dir',
