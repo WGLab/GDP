@@ -10,14 +10,14 @@ GDP stands for Group lasso regularized Deep learning for cancer Prognosis from m
 4. CUDA (only for GPU version, skip it if using CPU)
 
 ## Quick Start
-###Train GDP model
+### Train GDP model
 
 ```
 $bash run_train.sh
 or under SGE high-performance cluster
 $bash qsub_run_train.sh
 ```
-###Make prediction
+### Make prediction
 ```
 $bash run_prediction.sh
 or under SGE high-performance cluster
