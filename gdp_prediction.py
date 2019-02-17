@@ -16,7 +16,7 @@ def placeholder_inputs(batch_size):
         placeholders for features, at_risks and censors respectively
     """
     #pl stands for placeholder
-    feature_pl = tf.placeholder(tf.float32, shape= [batch_size, dm.FEATURE_SIZE]) #TODO, check the shape
+    feature_pl = tf.placeholder(tf.float32, shape= [batch_size, dm.FEATURE_SIZE]) 
     return feature_pl
 
 
