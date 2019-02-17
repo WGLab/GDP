@@ -76,6 +76,7 @@ getSimulated=function(filename,group_size=20,group_num=200,effective_group=3,wit
 	#get censoring status,  1: censored, 0: un-censored
 	censors=as.numeric(time_latent>time_censor)
 	
+	#check the output
 	print("time latent:")
 	print(summary(time_latent))
 
