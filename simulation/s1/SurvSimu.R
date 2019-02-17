@@ -68,6 +68,7 @@ getSimulated=function(filename,group_size=20,group_num=200,effective_group=3,wit
 	print(length(beta))
 	tmp=features %*% beta
 	print(dim(tmp))
+	#definition of latent time
 	time_latent=(-log(v)/(lambda*exp(features %*% beta)))^(1/rho)
 	#get censoring time
 	time_censor=rexp(n=sample_size,rate=rateC)
@@ -75,7 +76,8 @@ getSimulated=function(filename,group_size=20,group_num=200,effective_group=3,wit
 	days=pmin(time_latent,time_censor)
 	#get censoring status,  1: censored, 0: un-censored
 	censors=as.numeric(time_latent>time_censor)
-	
+
+	#check key outputs	
 	print("time latent:")
 	print(summary(time_latent))
 
