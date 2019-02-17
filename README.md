@@ -5,8 +5,8 @@ GDP stands for Group lasso regularized Deep learning for cancer Prognosis from m
 ## PREREQUISITES
 
 1. Python 2.7 or Python 3.6
-2. Tensorflow 1.4.1
-3. linux environment
+2. Google Tensorflow 1.4.1
+3. Linux environment
 4. CUDA (only for GPU version, skip it if using CPU)
 
 ## Quick Start
@@ -159,4 +159,6 @@ For censors column: if 1 then means the survival date of the patient is censored
 ### about the input file for making prediction
 If the survival data and survival censoring status are not availabe for prediction data, then random numbers can be added to make the format consistent with the format used in the training process. And in order to load the model based on the training, the number of patients (samples) in this prediction input file should equal to the batch size used in the training process.
 
+## Reference
 
+Xie et al, GDP: Group lasso regularized Deep learning for cancer Prognosis from multi-omics and clinical features. Submitted, 2019
