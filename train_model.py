@@ -54,8 +54,6 @@ def get_data(filename):
 
     return datasets
 
-#TODO: add batch size, and use FLAGS to generate batch_size and the feature_size
-
 
 def placeholder_inputs(batch_size):
     """Placeholder variables for input tensors
@@ -65,11 +63,10 @@ def placeholder_inputs(batch_size):
         placeholders for features, at_risks and censors respectively
     """
     #pl stands for placeholder
-    feature_pl = tf.placeholder(tf.float32, shape= [batch_size, dm.FEATURE_SIZE]) #TODO, check the shape
+    feature_pl = tf.placeholder(tf.float32, shape= [batch_size, dm.FEATURE_SIZE]) 
     at_risk_pl = tf.placeholder(tf.int32, shape= [batch_size, ])
-    date_pl= tf.placeholder(tf.float32,shape= [batch_size, ]) #TODO: check the shape
-    censor_pl = tf.placeholder(tf.float32,shape= [batch_size, ]) #TODO: check the shape
-    #group_pl=tf.placeholder(tf.float32,shape=[dm.FEATURE_SIZE]) # TODO: check this
+    date_pl= tf.placeholder(tf.float32,shape= [batch_size, ])
+    censor_pl = tf.placeholder(tf.float32,shape= [batch_size, ]) 
     return feature_pl, at_risk_pl, date_pl, censor_pl
 
 
@@ -95,7 +92,6 @@ def fill_feed_dict(data_set_next_batch,feature_pl,at_risk_pl,date_pl,censor_pl):
     return feed_dict
 
 
-#TODO: get average cindex for one full epoch of the data
 def do_eval(sess,eval_cindex_o,eval_o_file,eval_type,train_steps,loss_pl,inf_out_pl,feature_pl,at_risk_pl,date_pl,censor_pl,data_set,isTrain_pl,isTrain):
     """ Run evaluation
     Args:
@@ -129,13 +125,8 @@ def do_eval(sess,eval_cindex_o,eval_o_file,eval_type,train_steps,loss_pl,inf_out
     cindex=float(cindex_sum)/float(count)
     loss=float(loss_sum)/float(count)
 
-    #feed_dict=fill_feed_dict(data_set,feature_pl,at_risk_pl,date_pl,censor_pl)
 
 
-#    print(info_output)
-#    print(str(type(info_output))+" "+str(type(data_set.dates)))
-#    print(str(info_output.shape)+" "+str(data_set.dates.shape))
-#    cindex=lu.concordance_index(data_set.dates,-info_output,1-data_set.censors)
     eval_o_file.write(str(train_steps)+"\t"+str(eval_type)+"\t"+str(loss)+"\t"+str(cindex)+"\n")
     print("cindex:"+str(cindex))
     return cindex
@@ -158,8 +149,8 @@ def run_training():
     """Train, evaluate and test the model
     """
     #get the data and format it as DataSet tuples
-    data_sets=ld.read_data_sets(FLAGS.train_dir,FLAGS.train_file) #TODO, add other options
-    feature_groups=data_sets.train.feature_groups #TODO: use placeholder in the future
+    data_sets=ld.read_data_sets(FLAGS.train_dir,FLAGS.train_file)
+    feature_groups=data_sets.train.feature_groups 
     feature_size=data_sets.train.feature_size
     dm.FEATURE_SIZE=feature_size #set the feature size of the datasets
 
@@ -205,7 +196,6 @@ def run_training():
         train_op = dm.training(loss, FLAGS.initial_learning_rate)
 
         # Add evaluation to the Graph
-        #TODO: cindex function cannot accept placeholder
         #cindex_pl=dm.evaluation(inf_output,date_pl,censor_pl)
 
         # Build the summary Tensor based on the TF collection of Summaries.
