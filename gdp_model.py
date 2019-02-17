@@ -2,10 +2,9 @@ import tensorflow as tf
 import numpy as np
 import re,math
 # The TCGA feature size
-FEATURE_SIZE=2931 #TODO, during training , this need be adjusted
+FEATURE_SIZE=2931 #during training , this need be adjusted
 NUM_CLASSES=1 # number of final output neurons
 
-#TODO: use tf.cumsum instead
 #def cumsum(x,observations):
 #    x=tf.reshape(x,(1,observations))
 #    values=tf.split(x,observations,axis=1)
@@ -152,7 +151,7 @@ def inference_linear(features):
 #    Args:
 #        inf_weights1: the weights1 of the first hidden layer from inference
 #        inf_output: the inference output
-#        at_risk: #TODO
+#        at_risk: 
 #        censors: censor status of the patients ([batch_size])
 #        batch_size: number of samples/patients data used for each training/validation/testing
 #        groups: corresponding group id for each feature  ([feature_size])
