@@ -132,7 +132,7 @@ optional arguments:
 
 ### simple example
 ```
-Here is the first four lines of an example input file:
+Here is an simple example with 2 groups of features and 10 patients input file:
 1,1,1,2,2,2
 X1,X2,X3,X4,X5,X6,days,censors
 -1.85902783053298,0.0994494352091435,-0.807210866434911,0.303156984244015,-0.275110805413045,0.579571367421607,27.7573213813725,1
