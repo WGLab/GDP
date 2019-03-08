@@ -8,6 +8,7 @@ GDP stands for Group lasso regularized Deep learning for cancer Prognosis from m
 2. Google Tensorflow 1.4.1
 3. Linux environment
 4. CUDA (only for GPU version, skip it if using CPU)
+5. lifelines (https://lifelines.readthedocs.io/en/latest/Quickstart.html)
 
 ## Quick Start
 ### Train GDP model
