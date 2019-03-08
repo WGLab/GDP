@@ -169,6 +169,18 @@ For censors column: if 1 then means the survival date of the patient is censored
 ### about the input file for making prediction
 If the survival data and survival censoring status are not availabe for prediction data, then random numbers can be added to make the format consistent with the format used in the training process. And in order to load the model based on the training, the number of patients (samples) in this prediction input file should equal to the batch size used in the training process.
 
+## common error solution
+
+### CXXABI_1.3.9 import error
+
+```
+ImportError: /lib64/libstdc++.so.6: version 'CXXABI_1.3.9' not found (required by /home/gangcai/bin/miniconda2/lib/python2.7/site-packages/scipy/sparse/_sparsetools.so)
+```
+Your can export your library path, and if you use conda, you can export by:
+```bash
+export LD_LIBRARY_PATH="/home/gangcai/bin/miniconda2/lib:$LD_LIBRARY_PATH"
+```
+
 ## Reference
 
 Xie et al, GDP: Group lasso regularized Deep learning for cancer Prognosis from multi-omics and clinical features. Submitted, 2019
