@@ -396,6 +396,9 @@ if __name__ == '__main__':
       default="eval_output",
       help='evaluation scores output directory(cost, cindex changes in each epoch after one batch of data feeding)',
   )
+  if len(sys.argv)==1:
+	  parser.print_help()
+	  sys.exit(1)
 
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
