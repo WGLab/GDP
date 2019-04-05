@@ -183,4 +183,4 @@ export LD_LIBRARY_PATH="/home/gangcai/bin/miniconda2/lib:$LD_LIBRARY_PATH"
 
 ## Reference
 
-Xie et al, GDP: Group lasso regularized Deep learning for cancer Prognosis from multi-omics and clinical features. Submitted, 2019
+Xie G, Dong C, Kong Y, Zhong JF, Li M, Wang K. [GDP: Group lasso regularized Deep learning for cancer Prognosis from multi-omics and clinical features](https://www.mdpi.com/2073-4425/10/3/240). **Genes**, 10(3):240, 2019
