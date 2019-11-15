@@ -4,7 +4,7 @@ GDP stands for Group lasso regularized Deep learning for cancer Prognosis from m
 
 ## PREREQUISITES
 
-1. Python 2.7 or Python 3.6
+1. Python 2.7
 2. Google Tensorflow 1.4.1
 3. Linux environment
 4. CUDA (only for GPU version, skip it if using CPU)
@@ -176,7 +176,7 @@ If the survival data and survival censoring status are not availabe for predicti
 ```
 ImportError: /lib64/libstdc++.so.6: version 'CXXABI_1.3.9' not found (required by /home/gangcai/bin/miniconda2/lib/python2.7/site-packages/scipy/sparse/_sparsetools.so)
 ```
-Your can export your library path, and if you use conda, you can export by:
+You can export your library path, and if you use conda, you can export by:
 ```bash
 export LD_LIBRARY_PATH="/home/gangcai/bin/miniconda2/lib:$LD_LIBRARY_PATH"
 ```
